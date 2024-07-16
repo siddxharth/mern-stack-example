@@ -20,4 +20,4 @@ jobs:
             - name: Load Environment Variables
               run: echo "ATLAS_URI=${{ secrets.ATLAS_URI }}" >> .env && echo "PORT=${{ secrets.PORT }}" >> .env
             - name: Start Containers
-              run: docker-compose up -d
+              run: docker compose up -d
