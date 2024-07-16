@@ -18,7 +18,7 @@ jobs:
                   docker pull yoismak/mern-client:latest
                   docker pull mongo
             - name: Delete old containers
-              run: docker compose down
+              run: docker compose down || true
             - name: Load Environment Variables
               run: echo "ATLAS_URI=${{ secrets.ATLAS_URI }}" >> .env && echo "PORT=${{ secrets.PORT }}" >> .env
             - name: Build containers
