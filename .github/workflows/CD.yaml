@@ -20,7 +20,9 @@ jobs:
             - name: Delete old containers
               run: docker compose down || true
             - name: Load Environment Variables
-              run: export "ATLAS_URI=${{ secrets.ATLAS_URI }}" && export "PORT=${{ secrets.PORT }}"
+              run: |
+                  echo "ATLAS_URI=${{ secrets.ATLAS_URI }}" >> .env
+                  echo "PORT=${{ secrets.PORT }}" >> .env
             - name: Build containers
               run: docker compose build
             - name: Start Containers
