@@ -25,7 +25,7 @@ services:
     networks:
       - mern-network
   client:
-    container_name: server
+    container_name: client
     build:
       context: ./mern/client
     image: yoismak/mern-client:latest
