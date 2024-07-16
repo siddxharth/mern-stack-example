@@ -1,0 +1,23 @@
+name: CD Pipeline
+on:
+    workflow_run:
+        workflows: ["CI Pipeline"]
+        types:
+            - completed
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v3
+            - name: Login to Docker Hub
+              run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+            - name: Pull Docker Images
+              run: |
+                  docker pull yoismak/mern-server:latest
+                  docker pull yoismak/mern-client:latest
+                  docker pull mongo
+            - name: Load Environment Variables
+              run: echo "ATLAS_URI=${{ secrets.ATLAS_URI }}" >> .env && echo "PORT=${{ secrets.PORT }}" >> .env
+            - name: Start Containers
+              run: docker-compose up -d
