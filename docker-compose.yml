@@ -1,0 +1,37 @@
+services:
+  mongodb:
+    image: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - mern-network
+  server:
+    build:
+      context: ./mern/server
+    ports:
+      - "5050:5050"
+    environment:
+      ATLAS_URI: ${ATLAS_URI}
+      PORT: ${PORT}
+    env_file:
+      - .env
+    depends_on:
+      - mongodb
+    networks:
+      - mern-network
+  client:
+    build:
+      context: ./mern/client
+    ports:
+      - "3000:3000"
+    depends_on:
+      - server
+    networks:
+      - mern-network
+volumes:
+  mongodb_data:
+networks:
+  mern-network:
+    driver: bridge
