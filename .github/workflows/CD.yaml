@@ -19,11 +19,5 @@ jobs:
                   docker pull mongo
             - name: Delete old containers
               run: docker compose down
-            - name: Load Environment Variables
-              run: |
-                  echo "ATLAS_URI=${{ secrets.ATLAS_URI }}" >> .env
-                  echo "PORT=${{ secrets.PORT }}" >> .env
-            - name: Build containers
-              run: docker compose build
             - name: Start Containers
               run: docker compose up -d
