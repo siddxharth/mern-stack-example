@@ -19,7 +19,7 @@ jobs:
                   docker pull mongo
             - name: Stop Containers
               run: |
-                  docker stop $(docker ps -q)
-                  docker rm $(docker ps -aq)
+                  docker stop $(docker ps -q) || true
+                  docker rm $(docker ps -aq) || true
             - name: Start Containers
               run: docker compose up -d

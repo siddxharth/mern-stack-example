@@ -1,6 +1,7 @@
 services:
   mongodb:
     image: mongo
+    container_name: mongodb
     ports:
       - "27017:27017"
     volumes:
@@ -8,6 +9,7 @@ services:
     networks:
       - mern-network
   server:
+    container_name: server
     build:
       context: ./mern/server
     image: yoismak/mern-server:latest
@@ -23,6 +25,7 @@ services:
     networks:
       - mern-network
   client:
+    container_name: server
     build:
       context: ./mern/client
     image: yoismak/mern-client:latest
