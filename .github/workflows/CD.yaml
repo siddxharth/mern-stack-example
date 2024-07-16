@@ -17,7 +17,9 @@ jobs:
                   docker pull yoismak/mern-server:latest
                   docker pull yoismak/mern-client:latest
                   docker pull mongo
-            - name: Delete old containers
-              run: docker compose down
+            - name: Stop Containers
+              run: |
+                  docker stop $(docker ps -aq)
+                  docker rm $(docker ps -aq)
             - name: Start Containers
               run: docker compose up -d
