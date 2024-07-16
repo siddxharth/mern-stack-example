@@ -18,8 +18,6 @@ services:
     environment:
       ATLAS_URI: ${ATLAS_URI}
       PORT: ${PORT}
-    # env_file:
-    #   - .env
     depends_on:
       - mongodb
     networks:
