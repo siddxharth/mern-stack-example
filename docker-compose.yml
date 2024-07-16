@@ -10,6 +10,7 @@ services:
   server:
     build:
       context: ./mern/server
+    image: yoismak/mern-server:latest
     ports:
       - "5050:5050"
     environment:
@@ -24,6 +25,7 @@ services:
   client:
     build:
       context: ./mern/client
+    image: yoismak/mern-client:latest
     ports:
       - "3000:3000"
     depends_on:
