@@ -27,6 +27,3 @@ jobs:
               run: |
                   docker compose build
                   docker compose push
-
-            - name: Clean up
-              run: docker system prune -af
