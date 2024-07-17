@@ -15,7 +15,7 @@ services:
       context: ./mern/server
     image: yoismak/mern-server:latest
     ports:
-      - "5050:5050"
+      - "3001:3001"
     environment:
       - ATLAS_URI=${ATLAS_URI}
       - PORT=${PORT}
