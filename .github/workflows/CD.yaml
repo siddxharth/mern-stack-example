@@ -23,6 +23,6 @@ jobs:
 
             - name: Start Containers
               run: |
-                  export ATLAS_URI=${{ secrets.ATLAS_URI }}
-                  export PORT=${{ secrets.PORT }}
+                  export ATLAS_URI=mongodb://mongodb:27017/mern
+                  export PORT=3001
                   docker compose up -d
