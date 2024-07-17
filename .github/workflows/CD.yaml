@@ -17,16 +17,13 @@ jobs:
                   username: ${{ secrets.DOCKER_USERNAME }}
                   password: ${{ secrets.DOCKER_PASSWORD }}
 
-            - name: Pull Docker Images
-              run: docker compose pull
-
             - name: Setup Environment Variables
               run: |
                   echo "ATLAS_URI=${{ secrets.ATLAS_URI }}" >> .env
                   echo "PORT=${{ secrets.PORT }}" >> .env
 
+            - name: Pull Docker Images
+              run: docker compose pull
+
             - name: Start Containers
               run: docker compose up -d
-
-            - name: Clean up
-              run: docker system prune -af
