@@ -8,20 +8,24 @@ services:
       - mongodb_data:/data/db
     networks:
       - mern-network
+
   server:
     container_name: server
     build:
       context: ./mern/server
+      args:
+        - ATLAS_URI=${ATLAS_URI}
+        - PORT=${PORT}
     image: yoismak/mern-server:latest
     ports:
       - "5050:5050"
-    environment:
-      ATLAS_URI: ${ATLAS_URI}
-      PORT: ${PORT}
+    env_file:
+      - .env
     depends_on:
       - mongodb
     networks:
       - mern-network
+
   client:
     container_name: client
     build:
@@ -33,6 +37,7 @@ services:
       - server
     networks:
       - mern-network
+
 volumes:
   mongodb_data:
 networks:

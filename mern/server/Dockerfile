@@ -4,10 +4,16 @@ WORKDIR /usr/src/app
 
 COPY package*.json ./
 
-RUN npm install
+RUN npm ci --only=production
 
 COPY . .
 
-EXPOSE 5050
+ARG ATLAS_URI
+ARG PORT
 
-CMD ["npm", "start"]
+ENV ATLAS_URI=${ATLAS_URI}
+ENV PORT=${PORT}
+
+EXPOSE ${PORT}
+
+CMD ["node", "server.js"]
