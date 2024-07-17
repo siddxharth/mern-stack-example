@@ -19,8 +19,6 @@ jobs:
                   ATLAS_URI: ${{secrets.ATLAS_URI}}
                   PORT: ${{secrets.PORT}}
               run: |
-                  echo "ATLAS_URI=$ATLAS_URI" >> .env
-                  echo "PORT=$PORT" >> .env
                   docker compose build
             - name: Push Docker Images
               run: docker compose push

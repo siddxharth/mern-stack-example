@@ -14,12 +14,10 @@ jobs:
               run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
             - name: Pull Docker Images
               run: |
-                  docker pull yoismak/mern-server:latest
-                  docker pull yoismak/mern-client:latest
-                  docker pull mongo
-            - name: Stop Containers
-              run: |
-                  docker stop $(docker ps -q) || true
-                  docker rm $(docker ps -aq) || true
+                  docker compose pull
+            # - name: Stop Containers
+            #   run: |
+            #       docker stop $(docker ps -q) || true
+            #       docker rm $(docker ps -aq) || true
             - name: Start Containers
               run: docker compose up -d
