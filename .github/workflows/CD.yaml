@@ -15,9 +15,13 @@ jobs:
             - name: Pull Docker Images
               run: |
                   docker compose pull
-            # - name: Stop Containers
-            #   run: |
-            #       docker stop $(docker ps -q) || true
-            #       docker rm $(docker ps -aq) || true
+              # - name: Stop Containers
+              #   run: |
+              #       docker stop $(docker ps -q) || true
+              #       docker rm $(docker ps -aq) || true
+            - name: Setup Environment Variables
+              run: |
+                  export ATLAS_URI=${{ secrets.ATLAS_URI }}
+                  export PORT=${{ secrets.PORT }}
             - name: Start Containers
               run: docker compose up -d
