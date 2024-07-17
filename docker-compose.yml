@@ -13,14 +13,12 @@ services:
     container_name: server
     build:
       context: ./mern/server
-      args:
-        - ATLAS_URI=${ATLAS_URI}
-        - PORT=${PORT}
     image: yoismak/mern-server:latest
     ports:
       - "5050:5050"
-    env_file:
-      - .env
+    environment:
+      - ATLAS_URI=${ATLAS_URI}
+      - PORT=${PORT}
     depends_on:
       - mongodb
     networks:
