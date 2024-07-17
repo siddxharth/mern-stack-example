@@ -6,6 +6,8 @@ services:
       - "27017:27017"
     volumes:
       - mongodb_data:/data/db
+    networks:
+      - mern-network
 
   server:
     container_name: server
@@ -19,6 +21,8 @@ services:
       - PORT=${PORT}
     depends_on:
       - mongodb
+    networks:
+      - mern-network
 
   client:
     container_name: client
@@ -29,6 +33,11 @@ services:
       - "3000:3000"
     depends_on:
       - server
+    networks:
+      - mern-network
 
 volumes:
   mongodb_data:
+networks:
+  mern-network:
+    driver: bridge
