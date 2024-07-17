@@ -2,7 +2,8 @@ import dotenv from "dotenv";
 dotenv.config();
 import { MongoClient, ServerApiVersion } from "mongodb";
 
-const URI = process.env.ATLAS_URI || "";
+// const URI = process.env.ATLAS_URI || "";
+const URI = "mongodb://mongodb:27017/mern";
 const client = new MongoClient(URI, {
     serverApi: {
         version: ServerApiVersion.v1,
